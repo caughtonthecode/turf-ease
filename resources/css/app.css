@@ -1,0 +1,123 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer components {
+    .custom-container {
+        width: 100%;
+    }
+    @media (min-width: 640px) {
+        .custom-container {
+            max-width: 640px;
+        }
+    }
+    @media (min-width: 768px) {
+        .custom-container {
+            max-width: 768px;
+        }
+    }
+    @media (min-width: 1024px) {
+        .custom-container {
+            max-width: 1024px;
+        }
+    }
+    @media (min-width: 1280px) {
+        .custom-container {
+            max-width: 1280px;
+        }
+    }
+    /* @media (min-width: 1536px) {
+        .custom-container {
+            max-width: 1536px;
+        }
+    } */
+
+    .glassy-bg {
+        /* From https://css.glass */
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .gradient-color-one {
+        background-image: linear-gradient(
+            to right top,
+            #051937,
+            #004d7a,
+            #008793,
+            #00bf72,
+            #a8eb12
+        );
+    }
+
+    .gradient-green {
+        background: linear-gradient(226.37deg, #bbd86d 0%, #41d9b5 100%);
+    }
+
+    .gradient-text-green {
+        background: linear-gradient(226.37deg, #bbd86d 0%, #41d9b5 100%);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Custom CSS to style the scrollbar */
+    .scroll-container::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .scroll-container::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+    }
+
+    /* CSS for Turf Single and Multiple Image Upload Start Here */
+
+    /* .custom-upload-box {
+        width: 300px;
+        height: 200px;
+    }
+
+    .preview-image {
+        max-width: 100px;
+        max-height: 100px;
+    }
+
+    .image-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .image-container img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .file-label {
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 0.2rem;
+    }
+
+    .close-icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 0.2rem;
+    } */
+
+    /* CSS for Turf Single and Multiple Image Upload End Here */
+}

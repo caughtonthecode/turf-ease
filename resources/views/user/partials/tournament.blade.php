@@ -15,7 +15,7 @@
 
 @include('home.header')
 
-<div class="bg-[#ecf0f1] px-4 py-10">
+<div class="bg-[#ecf0f1] px-4 py-10 pt-32">
     <div class="custom-container mx-auto flex">
         <!-- User -->
         <div class="w-1/4">

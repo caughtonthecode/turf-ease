@@ -15,13 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('turf_name');
             $table->longText('description')->nullable();
+            $table->string('category');
             $table->string('division');
             $table->string('district');
             $table->string('address');
             $table->string('shift');
             $table->time('open_time');
             $table->time('close_time');
+            $table->boolean('is_booked')->default(false);
             $table->integer('price');
+            $table->string('facilities')->nullable();
             $table->string('f_image')->nullable();
             $table->string('image_gallery')->nullable();
             $table->integer('user_id')->nullable();

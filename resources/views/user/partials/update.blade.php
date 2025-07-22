@@ -1,6 +1,5 @@
 @php
     $userFname = $userAll->f_name;
-    $userLname = $userAll->l_name;
     $userEmail = $userAll->email;
     $userPhone = $userAll->phone;
     $userAddress = $userAll->address;
@@ -16,12 +15,12 @@
 @include('home.header')
 
 <div class="bg-[#ecf0f1] px-4 py-14">
-    <div class="custom-container mx-auto flex">
+    <div class="custom-container mx-auto flex mt-20">
         <!-- User -->
         <div class="w-1/4">
             <div class="bg-white p-6 w-5/6 flex flex-col items-center rounded-xl">
                 <img src="img/{{ $proPic }}" class="w-24 h-24 rounded-full" alt="">
-                <p class="p-1 mt-2 text-gray-500 font-semibold">{{ $userFname }} {{ $userLname }}</p>
+                <p class="p-1 mt-2 text-gray-500 font-semibold">{{ $userFname }}</p>
             </div>
 
             <!-- Sidebar -->
@@ -68,7 +67,7 @@
                     @csrf
                     <div class="flex flex-col space-y-3">
                         <span class="shadow flex items-center rounded-xl px-8 bg-slate-100 py-3 space-x-6">
-                            <label for="" class="text-gray-700 w-16">First Name</label>
+                            <label for="" class="text-gray-700 w-16">Name</label>
                             <input name="f_name"
                                 class="rounded-full bg-slate-200 text-gray-600 py-3 border-0 px-4 focus:ring-colo"
                                 value="{{ $userFname }}">
@@ -78,17 +77,7 @@
                                 @enderror
                             </span>
                         </span>
-                        <span class="shadow flex items-center rounded-xl px-8 bg-slate-100 py-3 space-x-6">
-                            <label for="" class="text-gray-700 w-16">Last Name</label>
-                            <input name="l_name"
-                                class="rounded-full bg-slate-200 text-gray-600 py-3 border-0 px-4 focus:ring-colo"
-                                value="{{ $userLname }}">
-                            <span class="text-red-400 text-sm">
-                                @error('l_name')
-                                    {{ $message = 'Please fill the field' }}
-                                @enderror
-                            </span>
-                        </span>
+
                         <span class="shadow flex items-center rounded-xl px-8 bg-slate-100 py-3 space-x-6">
                             <label for="" class="text-gray-700 w-16">Email</label>
                             <input name="email" class="rounded-full bg-slate-200 text-gray-600 py-3 border-0 px-4"

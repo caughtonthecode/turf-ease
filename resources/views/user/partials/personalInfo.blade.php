@@ -16,7 +16,7 @@
 @include('home.header')
 
 <div class="bg-[#ecf0f1] px-4 py-14">
-    <div class="custom-container mx-auto flex">
+    <div class="custom-container mx-auto flex mt-20">
         <!-- User -->
         <div class="w-1/4">
             <div class="bg-white p-6 w-5/6 flex flex-col items-center rounded-xl">

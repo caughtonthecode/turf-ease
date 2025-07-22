@@ -13,6 +13,12 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                VisAgeOutline:['VisAgeOutline'],
+                NatoSans:["Noto Sans", "sans-serif"],
+                Audiowide:["Audiowide", "sans-serif"],
+                Poppins:["Poppins", "sans-serif"],
+                Roboto:["Roboto", "sans-serif"],
+                OpenSans:["Open Sans", "sans-serif"]
             },
         },
     },

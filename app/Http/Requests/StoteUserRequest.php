@@ -26,9 +26,8 @@ class StoteUserRequest extends FormRequest
         return [
 
             'f_name' => ['required', 'string', 'max:255'],
-            'l_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'phone' => ['required', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'phone' => ['required', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
 
         ];

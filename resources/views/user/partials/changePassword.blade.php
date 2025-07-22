@@ -16,7 +16,7 @@
 @include('home.header')
 
 <div class="bg-[#ecf0f1] px-4 py-14">
-    <div class="custom-container mx-auto flex">
+    <div class="custom-container mx-auto flex mt-20">
         <!-- User -->
         <div class="w-1/4">
             <div class="bg-white p-6 w-5/6 flex flex-col items-center rounded-xl">
@@ -55,7 +55,7 @@
         <!-- Content -->
         <div class="w-2/3 bg-white rounded-lg">
             <div class="px-12 py-6">
-                <div class="max-w-md w-full bg-white p-8 rounded shadow-md">
+                <div class="max-w-md w-full bg-white p-8 rounded ">
                     <h2 class="text-3xl font-extrabold text-gray-800 mb-6">Change Password</h2>
                     @if (session('error'))
                         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4"

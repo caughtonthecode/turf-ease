@@ -14,10 +14,11 @@
 <body>
     @include('home.header')
     @include('home.search')
-    @include('home.slider')
     @include('home.explore')
-    @include('home.tournament')
+    @include('home.dhakaturf')
+    @include('home.slider')
     @include('home.turfbycategory')
+    @include('home.tournament')
     @include('home.turfregistration')
     @include('home.footer')
 </body>

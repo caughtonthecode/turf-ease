@@ -13,7 +13,6 @@
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="icon" type="image/x-icon" href="/img/favicon.png">
-
 <style>
     .swiper {
         width: 100%;
@@ -34,6 +33,36 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+
+    /* Tab Headers */
+    .tab-header.active {
+        @apply text-indigo-600 border-b-2 border-indigo-600 font-semibold;
+    }
+
+    /* Style the calendar icon */
+    /* input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+    } */
+
+    /* Define the gradient colors for the scrollbar */
+    ::-webkit-scrollbar {
+        width: 12px;
+        /* Width of the scrollbar */
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+        /* Gradient for the scrollbar track */
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, #4caf50, #009688);
+        /* Gradient for the scrollbar thumb */
+        border-radius: 6px;
+        /* Roundness of the scrollbar thumb */
     }
 </style>
 @vite('resources/css/app.css')

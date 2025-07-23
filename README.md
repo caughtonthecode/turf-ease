@@ -1,66 +1,137 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Turfease – Turf / Sports Field Booking Web Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Turfease** is a web application designed to simplify the process of booking sports turfs and fields. Whether you're an individual looking for a play slot or a turf manager handling reservations — Turfease brings everything under one platform.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Project Lookup
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Homepage
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+![Homepage Screenshot](./screenshots/home-1.png) ![](./screenshots/home-2.png) ![](./screenshots/home-3.png) ![](./screenshots/home-4.png)
 
-## Learning Laravel
+### Turf List Page
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+![Turf List Screenshot](./screenshots/turf-list.png)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Admin Panel
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+![Admin Panel Screenshot](./screenshots/admin-1.png) ![](./screenshots/admin-2.png)
 
-## Laravel Sponsors
+### Turf Manager Panel
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+![Turf Manager Panel Screenshot](./screenshots/tmanager-1.png) ![](./screenshots/tmanager-2.png) ![](./screenshots/tmanager-3.png)
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Technologies Used
 
-## Contributing
+-   **PHP** (Laravel Framework)
+-   **JavaScript**
+-   **HTML5**
+-   **CSS3**
+-   **Tailwind CSS**
+-   **MySQL**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## How to Run the Project
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Follow the steps below to set up and run Turfease locally:
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Step 1: Clone the Project
 
-## License
+```
+git clone https://github.com/caughtonthecode/turf-ease.git
+cd turfease
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Step 2: Open the Project in a Code Editor
+
+Use VS Code, PHPStorm, or any preferred editor.
+
+### Step 3: Step 3: Install Composer
+
+If Composer is not installed:
+Windows:
+Download installer from: https://getcomposer.org/download
+
+Run and follow the setup
+
+Now, install Laravel dependencies:
+
+```
+composer install
+```
+
+### Step 4: Install Node Modules
+
+```
+npm install
+```
+
+### Step 5: Set Up XAMPP and the Database
+
+Download and install XAMPP from https://www.apachefriends.org
+
+Start Apache and MySQL from XAMPP control panel
+
+Create a new database named: <b> turfease </b>
+
+### Step 6: Configure the Environment File
+
+```
+cp .env.example .env
+```
+
+Edit .env and set your database credentials:
+
+```
+DB_DATABASE=turfease
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### Step 7: Generate App Key
+
+```
+php artisan key:generate
+```
+
+### Step 8: Migrate the Database
+
+```
+php artisan migrate:fresh
+```
+
+If you see an error, make sure your database name matches and MySQL is running.
+
+### Step 9: Run the Frontend Build
+
+```
+npm run dev
+```
+
+This will compile Tailwind and other frontend assets.
+
+### Step 10: Serve the Laravel Project
+
+Open a second terminal and run:
+
+```
+php artisan serve
+```
+
+The Project will be start running
+
+Go to your browser and visit:
+
+```
+http://localhost:8000
+```
+
+### Enjoy!
+
+Thank You

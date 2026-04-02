@@ -1,110 +1,227 @@
-<div class=" bg-white hidden sm:block">
-    <div class="custom-container mx-auto pt-20 font-vietnampro text-sm flex justify-evenly pb-10">
-        <div class="flex flex-col leading-5">
-            <h1 class="text-lg pb-5">About Us</h1>
-            <a href="#">About us</a>
-            <a href="#">Career</a>
-            <a href="#">Partners</a>
-        </div>
-        <span class="border-r-[1px] border-r-[#bdc3c7]"></span>
-        <div class="flex flex-col ">
-            <h1 class="text-lg pb-5">Help & Support</h1>
-            <a href="#">FAQ</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms & Conditions</a>
-            <a href="#">Pricing & Refunds</a>
-        </div>
-        <span class="border-r-[1px] border-r-[#bdc3c7]"></span>
-        <div class="">
-            <h1 class="text-lg pb-5">Follow Us On</h1>
-            <span class="space-x-2">
-                <a href="#"><i class="fa-brands fa-facebook text-lg"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram text-lg"></i></a>
-                <a href="#"><i class="fa-brands fa-youtube text-lg"></i></a>
-            </span>
-        </div>
-        <span class="border-r-[1px] border-r-[#bdc3c7]"></span>
-        <div class="flex flex-col">
-            <h1 class="text-lg pb-5">Contact Us</h1>
-            <p><span><i class="fa-solid fa-location-dot mr-2"></i></span>Dhaka, Bangladesh</p>
-            <p><span><i class="fa-solid fa-envelope mr-2"></i></span>contact@turfease.com</p>
-        </div>
-    </div>
-    <p class="text-sm text-center pt-10 pb-2">© 2024 TurfEase. All Rights Reserved.</p>
+{{-- ===== Modern Footer ===== --}}
+<style>
+    .site-footer {
+        background: #080f08;
+        color: rgba(255,255,255,0.7);
+        font-family: 'Be Vietnam Pro', sans-serif;
+    }
 
-</div>
-<!-- Footer Area End Here -->
+    .footer-top {
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+        padding: 64px 0 48px;
+    }
 
-{{-- Mobile Footer --}}
-<div class="bg-white block sm:hidden overflow-x-hidden">
-    <div class="custom-container ml-8 mt-6">
-        <div class="flex flex-col md:border-r-[1px] md:border-r-[#bdc3c7] md:pr-4">
-            <h1 class="text-md font-semibold pb-2 md:pb-5">About Us</h1>
-            <a href="#" class="mb-0.5 text-sm">About us</a>
-            <a href="#" class="mb-0.5 text-sm">Career</a>
-            <a href="#" class="mb-0.5 text-sm">Partners</a>
-        </div>
-        <div class="flex flex-col md:pr-4 pt-3">
-            <h1 class="text-md font-semibold pb-2 md:pb-5 ">Help & Support</h1>
-            <a href="#" class="mb-0.5 text-sm">FAQ</a>
-            <a href="#" class="mb-0.5 text-sm">Privacy Policy</a>
-            <a href="#" class="mb-0.5 text-sm">Terms & Conditions</a>
-            <a href="#" class="mb-0.5 text-sm">Pricing & Refunds</a>
-        </div>
-        <div class="flex flex-col md:border-r-[1px] md:border-r-[#bdc3c7] md:pl-4 md:py-0">
-            <h1 class="text-md font-semibold pb-1 md:pb-5 pt-3">Follow Us On</h1>
-            <div class="flex space-x-2">
-                <a href="#"><i class="fab fa-facebook text-lg"></i></a>
-                <a href="#"><i class="fab fa-instagram text-lg"></i></a>
-                <a href="#"><i class="fab fa-youtube text-lg"></i></a>
+    .footer-brand-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 16px;
+        text-decoration: none;
+    }
+
+    .footer-brand-logo img { height: 28px; }
+
+    .footer-tagline {
+        font-size: 0.85rem;
+        line-height: 1.7;
+        color: rgba(255,255,255,0.45);
+        max-width: 240px;
+        margin-bottom: 22px;
+    }
+
+    .footer-social-links {
+        display: flex;
+        gap: 10px;
+    }
+
+    .footer-social-link {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255,255,255,0.5);
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: all 0.25s;
+    }
+
+    .footer-social-link:hover {
+        background: rgba(6,178,78,0.2);
+        border-color: #06B24E;
+        color: #06B24E;
+        transform: translateY(-2px);
+    }
+
+    .footer-col-title {
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: rgba(255,255,255,0.9);
+        margin-bottom: 18px;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .footer-link {
+        font-size: 0.85rem;
+        color: rgba(255,255,255,0.45);
+        text-decoration: none;
+        transition: color 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .footer-link:hover {
+        color: #06B24E;
+    }
+
+    .footer-link::before {
+        content: '';
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: rgba(6,178,78,0.4);
+        flex-shrink: 0;
+    }
+
+    .footer-contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 0.85rem;
+        color: rgba(255,255,255,0.45);
+        margin-bottom: 10px;
+    }
+
+    .footer-contact-item i {
+        color: #06B24E;
+        margin-top: 2px;
+        flex-shrink: 0;
+        width: 14px;
+    }
+
+    .footer-bottom {
+        padding: 18px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        text-align: center;
+    }
+
+    @media (min-width: 640px) {
+        .footer-bottom {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    .footer-copyright {
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.3);
+    }
+
+    .footer-made-with {
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.25);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .footer-made-with i { color: #ef4444; }
+</style>
+
+<footer class="site-footer">
+    <div class="footer-top">
+        <div class="custom-container mx-auto px-4">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+
+                {{-- Brand Column --}}
+                <div class="col-span-2 lg:col-span-1">
+                    <a href="{{ url('/') }}" class="footer-brand-logo">
+                        <img src="../../img/turfease-logo.png" alt="TurfEase">
+                    </a>
+                    <p class="footer-tagline">Bangladesh's leading online turf booking platform. Play more, worry less.</p>
+                    <div class="footer-social-links">
+                        <a href="#" class="footer-social-link"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="footer-social-link"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="footer-social-link"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="footer-social-link"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+
+                {{-- About Links --}}
+                <div>
+                    <h4 class="footer-col-title">Company</h4>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">About Us</a>
+                        <a href="#" class="footer-link">Careers</a>
+                        <a href="#" class="footer-link">Partners</a>
+                        <a href="#" class="footer-link">Blog</a>
+                    </div>
+                </div>
+
+                {{-- Support Links --}}
+                <div>
+                    <h4 class="footer-col-title">Help & Support</h4>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">FAQ</a>
+                        <a href="#" class="footer-link">Privacy Policy</a>
+                        <a href="#" class="footer-link">Terms & Conditions</a>
+                        <a href="#" class="footer-link">Pricing & Refunds</a>
+                    </div>
+                </div>
+
+                {{-- Contact --}}
+                <div>
+                    <h4 class="footer-col-title">Contact</h4>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Dhaka, Bangladesh</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>contact@turfease.com</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+880 1XXX-XXXXXX</span>
+                    </div>
+                </div>
+
             </div>
         </div>
-        <div class="flex flex-col md:pl-4 md:py-0 pt-3">
-            <h1 class="text-md font-semibold pb-2 md:pb-5">Contact Us</h1>
-            <p class="mb-0.5 text-sm"><span><i class="fas fa-map-marker-alt mr-2"></i></span>Dhaka, Bangladesh</p>
-            <p class="mb-0.5 text-sm"><span><i class="fas fa-envelope mr-2"></i></span>contact@turfease.com</p>
+    </div>
+
+    <div class="custom-container mx-auto px-4">
+        <div class="footer-bottom">
+            <p class="footer-copyright">© {{ date('Y') }} TurfEase. All Rights Reserved.</p>
+            <p class="footer-made-with">Made with <i class="fa-solid fa-heart text-xs"></i> in Bangladesh</p>
         </div>
     </div>
-    <p class="text-xs text-center px-4 pt-6 pb-2">© 2024 TurfEase. All Rights Reserved.</p>
-</div>
-
-
-</div>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    var swiper = new Swiper(".mySwiper", {
-        spaceBetween: 30,
-        centeredSlides: true,
-        autoplay: {
-            delay: 3500,
-            disableOnInteraction: false,
-        },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-    });
-</script>
-<script>
     function toggleDropDown(event) {
-        event.stopPropagation(); // Stop the event from bubbling up
-
+        event.stopPropagation();
         let dropdown = document.querySelector('#dropDownButton #dropdown');
-        dropdown.classList.toggle("hidden");
+        if (dropdown) dropdown.classList.toggle("hidden");
     }
-
-    // Add event listener to close dropdown when clicked outside
     document.addEventListener('click', function(event) {
         let dropdown = document.querySelector('#dropDownButton #dropdown');
-        let targetElement = event.target;
-
-        // Close dropdown if the clicked target is outside the dropdown
-        if (!dropdown.contains(targetElement)) {
+        if (dropdown && !dropdown.closest('#dropDownButton').contains(event.target)) {
             dropdown.classList.add('hidden');
         }
     });

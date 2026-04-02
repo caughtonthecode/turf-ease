@@ -1,272 +1,751 @@
-<body>
-    <style>
-        /* Mobile menu animations */
-        .animate-slide-down {
-            animation: slideDown 0.3s ease-in-out forwards;
+<style>
+    /* ============ NAVBAR ============ */
+    #navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 999;
+        transition: background 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease;
+    }
+
+    /* Transparent at top (over hero) — subtle dark gradient ensures white text is always readable */
+    #navbar.is-top {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.15) 60%, transparent 100%);
+        box-shadow: none;
+    }
+
+    /* Frosted glass after scroll */
+    #navbar.is-scrolled {
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06), 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 80px;
+        padding: 0 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Logo */
+    .nav-logo img {
+        height: 26px;
+        width: auto;
+        display: block;
+    }
+
+    /* Nav links */
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .nav-link {
+        position: relative;
+        font-family: 'Be Vietnam Pro', sans-serif;
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #fff;
+        text-decoration: none;
+        padding: 6px 14px;
+        border-radius: 8px;
+        transition: color 0.2s, background 0.2s;
+        letter-spacing: 0.01em;
+    }
+
+    #navbar.is-scrolled .nav-link {
+        color: #1a1a1a;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        transform: translateX(-50%) scaleX(0);
+        width: calc(100% - 24px);
+        height: 2px;
+        background: #06B24E;
+        border-radius: 2px;
+        transition: transform 0.25s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+        transform: translateX(-50%) scaleX(1);
+    }
+
+    .nav-link:hover {
+        color: #06B24E;
+        background: rgba(6, 178, 78, 0.07);
+    }
+
+    #navbar.is-scrolled .nav-link:hover {
+        color: #06B24E;
+    }
+
+    /* "List Your Turf" pill link */
+    .nav-link-pill {
+        font-family: 'Be Vietnam Pro', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #06B24E;
+        text-decoration: none;
+        padding: 7px 16px;
+        border-radius: 50px;
+        border: 1.5px solid rgba(6, 178, 78, 0.5);
+        transition: all 0.25s;
+        white-space: nowrap;
+        letter-spacing: 0.01em;
+    }
+
+    .nav-link-pill:hover {
+        background: #06B24E;
+        color: #fff;
+        border-color: #06B24E;
+    }
+
+    #navbar.is-top .nav-link-pill {
+        border-color: rgba(255, 255, 255, 0.5);
+        color: #fff;
+    }
+
+    #navbar.is-top .nav-link-pill:hover {
+        background: #06B24E;
+        border-color: #06B24E;
+        color: #fff;
+    }
+
+    /* Auth buttons */
+    .btn-login {
+        font-family: 'Be Vietnam Pro', sans-serif;
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #fff;
+        text-decoration: none;
+        padding: 7px 18px;
+        border-radius: 8px;
+        transition: all 0.25s;
+        border: 1.5px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-login:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.7);
+    }
+
+    #navbar.is-scrolled .btn-login {
+        color: #1a1a1a;
+        border-color: rgba(0, 0, 0, 0.15);
+    }
+
+    #navbar.is-scrolled .btn-login:hover {
+        background: rgba(0, 0, 0, 0.05);
+        border-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-register {
+        font-family: 'Be Vietnam Pro', sans-serif;
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #fff;
+        text-decoration: none;
+        padding: 8px 20px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #06B24E, #057534);
+        transition: all 0.25s;
+        box-shadow: 0 3px 12px rgba(6, 178, 78, 0.3);
+        white-space: nowrap;
+    }
+
+    .btn-register:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(6, 178, 78, 0.45);
+        background: linear-gradient(135deg, #07c55a, #06B24E);
+    }
+
+    /* User avatar & dropdown */
+    .user-menu {
+        position: relative;
+    }
+
+    .user-avatar-btn {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 50px;
+        transition: background 0.2s;
+        background: transparent;
+        border: none;
+    }
+
+    .user-avatar-btn:hover {
+        background: rgba(6, 178, 78, 0.08);
+    }
+
+    .user-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #06B24E;
+    }
+
+    .user-name {
+        font-family: 'Be Vietnam Pro', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #fff;
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    #navbar.is-scrolled .user-name {
+        color: #1a1a1a;
+    }
+
+    .user-chevron {
+        font-size: 0.65rem;
+        color: rgba(255, 255, 255, 0.6);
+        transition: transform 0.25s;
+    }
+
+    #navbar.is-scrolled .user-chevron {
+        color: #666;
+    }
+
+    .user-menu.open .user-chevron {
+        transform: rotate(180deg);
+    }
+
+    /* Dropdown panel */
+    .user-dropdown {
+        position: absolute;
+        top: calc(100% + 12px);
+        right: 0;
+        width: 210px;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(0, 0, 0, 0.06);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(-8px) scale(0.97);
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .user-menu.open .user-dropdown {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        pointer-events: all;
+    }
+
+    .dropdown-header {
+        padding: 14px 16px 10px;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    .dropdown-user-name {
+        font-family: 'Be Vietnam Pro', sans-serif;
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #111;
+    }
+
+    .dropdown-user-label {
+        font-size: 0.72rem;
+        color: #9ca3af;
+        font-family: 'Be Vietnam Pro', sans-serif;
+        margin-top: 1px;
+    }
+
+    .dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 11px 16px;
+        font-family: 'Be Vietnam Pro', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: #374151;
+        text-decoration: none;
+        transition: background 0.15s, color 0.15s;
+    }
+
+    .dropdown-item i {
+        width: 16px;
+        font-size: 0.82rem;
+        color: #9ca3af;
+        transition: color 0.15s;
+    }
+
+    .dropdown-item:hover {
+        background: #f8fdf9;
+        color: #06B24E;
+    }
+
+    .dropdown-item:hover i {
+        color: #06B24E;
+    }
+
+    .dropdown-divider {
+        height: 1px;
+        background: #f3f4f6;
+        margin: 4px 0;
+    }
+
+    .dropdown-item.danger {
+        color: #ef4444;
+    }
+
+    .dropdown-item.danger i {
+        color: #ef4444;
+    }
+
+    .dropdown-item.danger:hover {
+        background: #fff5f5;
+        color: #dc2626;
+    }
+
+    /* Hamburger / Mobile */
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 6px;
+        border-radius: 8px;
+        transition: background 0.2s;
+        background: transparent;
+        border: none;
+    }
+
+    .hamburger:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    #navbar.is-scrolled .hamburger:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
+
+    .ham-line {
+        display: block;
+        width: 22px;
+        height: 2px;
+        border-radius: 2px;
+        background: #fff;
+        transition: transform 0.3s, opacity 0.3s, width 0.3s;
+    }
+
+    #navbar.is-scrolled .ham-line {
+        background: #1a1a1a;
+    }
+
+    .hamburger.open .ham-line:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.open .ham-line:nth-child(2) {
+        opacity: 0;
+        width: 0;
+    }
+
+    .hamburger.open .ham-line:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile Drawer */
+    .mobile-drawer-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 998;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+        backdrop-filter: blur(4px);
+    }
+
+    .mobile-drawer-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .mobile-drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 280px;
+        background: #fff;
+        z-index: 999;
+        box-shadow: -8px 0 40px rgba(0, 0, 0, 0.15);
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mobile-drawer.open {
+        transform: translateX(0);
+    }
+
+    .drawer-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 20px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .drawer-close {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        background: #f5f5f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: none;
+        color: #555;
+        font-size: 0.9rem;
+        transition: background 0.2s;
+    }
+
+    .drawer-close:hover {
+        background: #ffe5e5;
+        color: #ef4444;
+    }
+
+    .drawer-nav {
+        flex: 1;
+        overflow-y: auto;
+        padding: 12px 12px;
+    }
+
+    .drawer-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        font-family: 'Be Vietnam Pro', sans-serif;
+        font-size: 0.92rem;
+        font-weight: 600;
+        color: #1a1a1a;
+        text-decoration: none;
+        transition: all 0.2s;
+        margin-bottom: 3px;
+    }
+
+    .drawer-link i {
+        width: 18px;
+        font-size: 0.85rem;
+        color: #9ca3af;
+    }
+
+    .drawer-link:hover {
+        background: #f0faf4;
+        color: #06B24E;
+    }
+
+    .drawer-link:hover i {
+        color: #06B24E;
+    }
+
+    .drawer-link.highlight {
+        background: linear-gradient(135deg, rgba(6, 178, 78, 0.1), rgba(126, 198, 32, 0.08));
+        color: #06B24E;
+        border: 1.5px solid rgba(6, 178, 78, 0.2);
+    }
+
+    .drawer-link.highlight i {
+        color: #06B24E;
+    }
+
+    .drawer-footer {
+        padding: 16px 12px;
+        border-top: 1px solid #f0f0f0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .drawer-btn-login {
+        display: block;
+        text-align: center;
+        padding: 11px;
+        border-radius: 10px;
+        border: 1.5px solid #e5e7eb;
+        font-family: 'Be Vietnam Pro', sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #374151;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+
+    .drawer-btn-login:hover {
+        border-color: #06B24E;
+        color: #06B24E;
+    }
+
+    .drawer-btn-register {
+        display: block;
+        text-align: center;
+        padding: 11px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #06B24E, #057534);
+        color: #fff;
+        font-family: 'Be Vietnam Pro', sans-serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.25s;
+    }
+
+    .drawer-btn-register:hover {
+        box-shadow: 0 4px 16px rgba(6, 178, 78, 0.4);
+    }
+
+    /* Notification dot */
+    .nav-dot {
+        position: absolute;
+        top: -2px;
+        right: -2px;
+        width: 7px;
+        height: 7px;
+        background: #06B24E;
+        border-radius: 50%;
+        border: 1.5px solid #fff;
+    }
+
+    @media (min-width: 768px) {
+        .mobile-only {
+            display: none !important;
         }
+    }
 
-        .animate-slide-up {
-            animation: slideUp 0.3s ease-in-out forwards;
+    @media (max-width: 767px) {
+        .desktop-only {
+            display: none !important;
         }
+    }
+</style>
 
-        @keyframes slideDown {
-            0% {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
+{{-- ============ NAVBAR ============ --}}
+<nav id="navbar" class="is-top">
+    <div class="nav-inner">
 
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
+        {{-- Logo --}}
+        <a href="{{ url('/') }}" class="nav-logo" style="flex-shrink:0;">
+            <img src="/img/turfease-logo.png" alt="TurfEase">
+        </a>
 
-        @keyframes slideUp {
-            0% {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        {{-- Desktop Nav Links --}}
+        <div class="nav-links desktop-only" style="flex:1; justify-content:center;">
+            <a href="#" class="nav-link">
+                <i class="fa-regular fa-newspaper" style="margin-right:5px; font-size:0.8rem;"></i> Feed
+            </a>
+            <a href="{{ url('turf-list') }}" class="nav-link">
+                <i class="fa-solid fa-futbol" style="margin-right:5px; font-size:0.8rem;"></i> Turf
+            </a>
+            <a href="#" class="nav-link">
+                <i class="fa-solid fa-trophy" style="margin-right:5px; font-size:0.8rem;"></i> Tournaments
+            </a>
+        </div>
 
-            100% {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-        }
+        {{-- Desktop Right Side --}}
+        <div class="desktop-only" style="display:flex; align-items:center; gap:10px; flex-shrink:0;">
+            <a href="{{ url('manager-request') }}" class="nav-link-pill">
+                <i class="fa-solid fa-plus" style="margin-right:4px; font-size:0.75rem;"></i> List Your Turf
+            </a>
 
-        /* Dropdown animations */
-        .animate-fade-in {
-            animation: fadeIn 0.3s ease-in-out forwards;
-        }
+            @if (Route::has('login'))
+                @auth
+                    {{-- User Dropdown --}}
+                    <div class="user-menu" id="userMenu">
+                        <button class="user-avatar-btn" onclick="toggleUserMenu(event)">
+                            <img src="/img/{{ $userAll->pro_pic }}" class="user-avatar" alt="{{ $userAll->f_name }}">
+                            <span class="user-name">{{ $userAll->f_name }}</span>
+                            <i class="fa-solid fa-chevron-down user-chevron"></i>
+                        </button>
 
-        .animate-fade-out {
-            animation: fadeOut 0.3s ease-in-out forwards;
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeOut {
-            0% {
-                opacity: 1;
-            }
-
-            100% {
-                opacity: 0;
-            }
-        }
-
-        #navbar {
-            position: fixed;
-            /* Adjust this value as needed */
-            width: 100%;
-            transition: top 0.3s all;
-            /* Transition for the top property */
-        }
-
-        .stt {
-            background: #ffffff36;
-            backdrop-filter: blur(20px);
-        }
-    </style>
-</body>
-
-<div class="fixed z-50 top-0 mx-auto w-full bg-white shadow" id="navbar">
-    <div class="custom-container mx-auto">
-        <!-- Hedaer Area-->
-        <div class="flex items-center py-4 hidden md:flex">
-            <div class="w-1/5">
-                <a href="{{ url('/') }}"><img src="../../img/turfease-logo.png" class="w-36 h-6"></a>
-            </div>
-            <div class="w-3/4 justify-start hidden sm:flex sm:items-center">
-                <a href="#"
-                    class="text-black text-base font-semibold transi duration-200 hover:border-b-2 active:border-b-2 hover:text-[#06B24E] mr-6 font-vietnampro">Feed</a>
-                <a href="{{ url('turf-list') }}"
-                    class="text-black text-base font-semibold transi duration-200 hover:border-b-2 active:border-b-2 hover:text-[#06B24E] mr-6 font-vietnampro">Turf</a>
-                <a href="#"
-                    class="text-black text-base font-semibold transi duration-200 hover:border-b-2 active:border-b-2 hover:text-[#06B24E] mr-6 font-vietnampro">Tournament</a>
-                <a href="{{ url('manager-request') }}"
-                    class="text-black text-base font-semibold transi duration-200 hover:border-b-2 active:border-b-2 hover:text-[#06B24E] mr-4 font-vietnampro">List
-                    Your Turf</a>
-            </div>
-
-            <div class="w-1/4 justify-end hidden sm:flex sm:items-center">
-                @if (Route::has('login'))
-                    @auth
-                        <p class="mr-2 text-base font-vietnampro font-medium text-[#06B24E]">{{ $userAll->f_name }}</p>
-                        <div class="relative" id="dropDownButton">
-                            <img src="../../img/{{ $userAll->pro_pic }}"
-                                class="w-9 h-9 cursor-pointer p-[1.5px] rounded-full border-2 border-[#06B24E]"
-                                onclick="toggleDropDown(event)" alt="">
-
-                            <div class="absolute hidden overflow-hidden top-12 right-0 shadow w-52 rounded" id="dropdown">
-                                <a href="{{ url('userProfile') }}"
-                                    class="block bg-white text-black px-5 py-3 hover:bg-slate-800 hover:text-white">Profile</a>
-                                <a href="{{ url('termsPolicy') }}"
-                                    class="block bg-white text-black px-5 py-3 hover:bg-slate-800 hover:text-white">Terms
-                                    and Policy</a>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit"
-                                        class="block w-full text-start bg-white text-black px-5 py-3 hover:bg-slate-800 hover:text-white">Logout</button>
-                                </form>
+                        <div class="user-dropdown" id="userDropdown">
+                            <div class="dropdown-header">
+                                <div class="dropdown-user-name">{{ $userAll->f_name }}</div>
+                                <div class="dropdown-user-label">Registered Member</div>
                             </div>
+                            <a href="{{ url('userProfile') }}" class="dropdown-item">
+                                <i class="fa-regular fa-user"></i> My Profile
+                            </a>
+                            <a href="{{ url('bookings') ?? '#' }}" class="dropdown-item">
+                                <i class="fa-regular fa-calendar-check"></i> My Bookings
+                            </a>
+                            <a href="{{ url('termsPolicy') }}" class="dropdown-item">
+                                <i class="fa-regular fa-file-lines"></i> Terms & Policy
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="dropdown-item danger"
+                                    style="width:100%; text-align:left; background:none; border:none; cursor:pointer;">
+                                    <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+                                </button>
+                            </form>
                         </div>
-                        {{-- <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit">Logout</button>
-                    </form> --}}
-                    @else
-                        <a href="{{ url('login') }}"
-                            class="text-black text-base transition-all duration-300 border-red-400 hover:text-white hover:bg-[#06B24E] rounded-lg px-3 py-2 font-semibold mr-4 font-vietnampro">Login</a>
-                        <a href="{{ url('register') }}"
-                            class="text-white text-base font-semibold font-vietnampro bg-[#06B24E] transition duration-300 hover:bg-[#057534] px-3 py-2 rounded-lg">Register</a>
-                    @endif
+                    </div>
+                @else
+                    <a href="{{ url('login') }}" class="btn-login">Login</a>
+                    <a href="{{ url('register') }}" class="btn-register">
+                        Get Started <i class="fa-solid fa-arrow-right" style="font-size:0.75rem; margin-left:4px;"></i>
+                    </a>
                 @endauth
-            </div>
-
-            <div class="sm:hidden cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-purple-600" viewBox="0 0 24 24">
-                    <path fill="currentColor"
-                        d="M12.9499909,17 C12.7183558,18.1411202 11.709479,19 10.5,19 C9.29052104,19 8.28164422,18.1411202 8.05000906,17 L3.5,17 C3.22385763,17 3,16.7761424 3,16.5 C3,16.2238576 3.22385763,16 3.5,16 L8.05000906,16 C8.28164422,14.8588798 9.29052104,14 10.5,14 C11.709479,14 12.7183558,14.8588798 12.9499909,16 L20.5,16 C20.7761424,16 21,16.2238576 21,16.5 C21,16.7761424 20.7761424,17 20.5,17 L12.9499909,17 Z M18.9499909,12 C18.7183558,13.1411202 17.709479,14 16.5,14 C15.290521,14 14.2816442,13.1411202 14.0500091,12 L3.5,12 C3.22385763,12 3,11.7761424 3,11.5 C3,11.2238576 3.22385763,11 3.5,11 L14.0500091,11 C14.2816442,9.85887984 15.290521,9 16.5,9 C17.709479,9 18.7183558,9.85887984 18.9499909,11 L20.5,11 C20.7761424,11 21,11.2238576 21,11.5 C21,11.7761424 20.7761424,12 20.5,12 L18.9499909,12 Z M9.94999094,7 C9.71835578,8.14112016 8.70947896,9 7.5,9 C6.29052104,9 5.28164422,8.14112016 5.05000906,7 L3.5,7 C3.22385763,7 3,6.77614237 3,6.5 C3,6.22385763 3.22385763,6 3.5,6 L5.05000906,6 C5.28164422,4.85887984 6.29052104,4 7.5,4 C8.70947896,4 9.71835578,4.85887984 9.94999094,6 L20.5,6 C20.7761424,6 21,6.22385763 21,6.5 C21,6.77614237 20.7761424,7 20.5,7 L9.94999094,7 Z M7.5,8 C8.32842712,8 9,7.32842712 9,6.5 C9,5.67157288 8.32842712,5 7.5,5 C6.67157288,5 6,5.67157288 6,6.5 C6,7.32842712 6.67157288,8 7.5,8 Z M16.5,13 C17.3284271,13 18,12.3284271 18,11.5 C18,10.6715729 17.3284271,10 16.5,10 C15.6715729,10 15,10.6715729 15,11.5 C15,12.3284271 15.6715729,13 16.5,13 Z M10.5,18 C11.3284271,18 12,17.3284271 12,16.5 C12,15.6715729 11.3284271,15 10.5,15 C9.67157288,15 9,15.6715729 9,16.5 C9,17.3284271 9.67157288,18 10.5,18 Z" />
-                </svg>
-            </div>
+            @endif
         </div>
 
-        <div class="block sm:hidden bg-white border-t-2 py-2 px-4 overflow-x-hidden">
-            <div class="flex justify-center items-center py-2">
-                <div class="w-1/3 sm:w-auto">
-                    <a href="{{ url('/') }}"><img src="../../img/turfease-logo.png" class="w-auto h-6"></a>
-                </div>
-                <div class="sm:hidden ml-auto">
-                    <button type="button" class="text-green-600 focus:outline-none" onclick="toggleMobileMenu()">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24">
-                            <path fill="currentColor"
-                                d="M12.9499909,17 C12.7183558,18.1411202 11.709479,19 10.5,19 C9.29052104,19 8.28164422,18.1411202 8.05000906,17 L3.5,17 C3.22385763,17 3,16.7761424 3,16.5 C3,16.2238576 3.22385763,16 3.5,16 L8.05000906,16 C8.28164422,14.8588798 9.29052104,14 10.5,14 C11.709479,14 12.7183558,14.8588798 12.9499909,16 L20.5,16 C20.7761424,16 21,16.2238576 21,16.5 C21,16.7761424 20.7761424,17 20.5,17 L12.9499909,17 Z M18.9499909,12 C18.7183558,13.1411202 17.709479,14 16.5,14 C15.290521,14 14.2816442,13.1411202 14.0500091,12 L3.5,12 C3.22385763,12 3,11.7761424 3,11.5 C3,11.2238576 3.22385763,11 3.5,11 L14.0500091,11 C14.2816442,9.85887984 15.290521,9 16.5,9 C17.709479,9 18.7183558,9.85887984 18.9499909,11 L20.5,11 C20.7761424,11 21,11.2238576 21,11.5 C21,11.7761424 20.7761424,12 20.5,12 L18.9499909,12 Z M9.94999094,7 C9.71835578,8.14112016 8.70947896,9 7.5,9 C6.29052104,9 5.28164422,8.14112016 5.05000906,7 L3.5,7 C3.22385763,7 3,6.77614237 3,6.5 C3,6.22385763 3.22385763,6 3.5,6 L5.05000906,6 C5.28164422,4.85887984 6.29052104,4 7.5,4 C8.70947896,4 9.71835578,4.85887984 9.94999094,6 L20.5,6 C20.7761424,6 21,6.22385763 21,6.5 C21,6.77614237 20.7761424,7 20.5,7 L9.94999094,7 Z M7.5,8 C8.32842712,8 9,7.32842712 9,6.5 C9,5.67157288 8.32842712,5 7.5,5 C6.67157288,5 6,5.67157288 6,6.5 C6,7.32842712 6.67157288,8 7.5,8 Z M16.5,13 C17.3284271,13 18,12.3284271 18,11.5 C18,10.6715729 17.3284271,10 16.5,10 C15.6715729,10 15,10.6715729 15,11.5 C15,12.3284271 15.6715729,13 16.5,13 Z M10.5,18 C11.3284271,18 12,17.3284271 12,16.5 C12,15.6715729 11.3284271,15 10.5,15 C9.67157288,15 9,15.6715729 9,16.5 C9,17.3284271 9.67157288,18 10.5,18 Z" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="hidden sm:flex sm:w-3/4 sm:justify-start sm:items-center">
-                    <a href="#"
-                        class="text-black text-base font-semibold transi duration-200 hover:border-b-2 active:border-b-2 hover:text-[#06B24E] mr-6 font-vietnampro">Feed</a>
-                    <a href="turf-lists.html"
-                        class="text-black text-base font-semibold transi duration-200 hover:border-b-2 active:border-b-2 hover:text-[#06B24E] mr-6 font-vietnampro">Turf</a>
-                    <a href="#"
-                        class="text-black text-base font-semibold transi duration-200 hover:border-b-2 active:border-b-2 hover:text-[#06B24E] mr-6 font-vietnampro">Tournament</a>
-                    <a href="#"
-                        class="text-black text-base font-semibold transi duration-200 hover:border-b-2 active:border-b-2 hover:text-[#06B24E] mr-4 font-vietnampro">List
-                        Your Turf</a>
-                </div>
-                <div class="hidden sm:flex sm:w-1/4 sm:justify-end sm:items-center">
-                    @if (Route::has('login'))
-                        @auth
-                            <p class="mr-2 text-base font-vietnampro font-medium text-[#06B24E]">{{ $userAll->f_name }}</p>
-                            <div class="relative" id="dropDownButton">
-                                <img src="../img/{{ $userAll->pro_pic }}"
-                                    class="w-9 h-9 cursor-pointer p-[1.5px] rounded-full border-2 border-[#06B24E]"
-                                    onclick="toggleDropDown(event)" alt="">
-                                <div class="absolute hidden overflow-hidden top-12 right-0 shadow w-52 rounded"
-                                    id="dropdown">
-                                    <a href="{{ url('userProfile') }}"
-                                        class="block bg-white text-black px-5 py-3 hover:bg-slate-800 hover:text-white">Profile</a>
-                                    <a href="{{ url('termsPolicy') }}"
-                                        class="block bg-white text-black px-5 py-3 hover:bg-slate-800 hover:text-white">Terms
-                                        and Policy</a>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <button type="submit"
-                                            class="block w-full text-start bg-white text-black px-5 py-3 hover:bg-slate-800 hover:text-white">Logout</button>
-                                    </form>
-                                </div>
-                            </div>
-                        @else
-                            <a href="{{ url('login') }}"
-                                class="text-black text-base transition-all duration-300 border-red-400 hover:text-white hover:bg-[#06B24E] rounded-lg px-3 py-2 font-semibold mr-4 font-vietnampro">Login</a>
-                            <a href="{{ url('register') }}"
-                                class="text-white text-base font-semibold font-vietnampro bg-[#06B24E] transition duration-300 hover:bg-[#057534] px-3 py-2 rounded-lg">Register</a>
-                        @endauth
-                    @endif
-                </div>
-            </div>
-            <!-- Mobile Menu -->
-            <div class="fixed inset-0 z-10 overflow-y-auto bg-white/80 lg:hidden hidden" id="mobile-menu">
-                <div class="min-h-screen flex flex-col items-center justify-center">
-                    <button type="button" class="mb-4 text-purple-600 focus:outline-none" onclick="toggleMobileMenu()">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                    <a href="#"
-                        class="text-black text-base font-semibold transi duration-200 hover:border-b-2 active:border-b-2 hover:text-[#06B24E] mb-4 font-vietnampro">Feed</a>
-                    <a href="turf-lists.html"
-                        class="text-black text-base font-semibold transi duration-200 hover:border-b-2 active:border-b-2 hover:text-[#06B24E] mb-4 font-vietnampro">Turf</a>
-                    <a href="#"
-                        class="text-black text-base font-semibold transi duration-200 hover:border-b-2 active:border-b-2 hover:text-[#06B24E] mb-4 font-vietnampro">Tournament</a>
-                    <a href="#"
-                        class="text-black text-base font-semibold transi duration-200 hover:border-b-2 active:border-b-2 hover:text-[#06B24E] mb-4 font-vietnampro">List
-                        Your Turf</a>
-                </div>
-            </div>
-        </div>
+        {{-- Mobile Hamburger --}}
+        <button class="hamburger mobile-only" id="hamburgerBtn" onclick="toggleDrawer()" aria-label="Menu">
+            <span class="ham-line"></span>
+            <span class="ham-line"></span>
+            <span class="ham-line"></span>
+        </button>
+
     </div>
-</div>
+</nav>
+
+{{-- Mobile Drawer Overlay --}}
+<div class="mobile-drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
+
+{{-- Mobile Drawer --}}
+<div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+        <a href="{{ url('/') }}">
+            <img src="/img/turfease-logo.png" alt="TurfEase" style="height:22px;">
+        </a>
+        <button class="drawer-close" onclick="toggleDrawer()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <div class="drawer-nav">
+        <a href="#" class="drawer-link">
+            <i class="fa-regular fa-newspaper"></i> Feed
+        </a>
+        <a href="{{ url('turf-list') }}" class="drawer-link">
+            <i class="fa-solid fa-futbol"></i> Turf
+        </a>
+        <a href="#" class="drawer-link">
+            <i class="fa-solid fa-trophy"></i> Tournaments
+        </a>
+        <a href="{{ url('manager-request') }}" class="drawer-link highlight" style="margin-top:8px;">
+            <i class="fa-solid fa-plus-circle"></i> List Your Turf
+        </a>
+
+        @auth
+            <div style="margin-top:16px; padding:12px; background:#f8fdf9; border-radius:12px; border:1px solid #e8f5ec;">
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+                    <img src="/img/{{ $userAll->pro_pic }}"
+                        style="width:40px; height:40px; border-radius:50%; border:2px solid #06B24E; object-fit:cover;"
+                        alt="">
+                    <div>
+                        <div
+                            style="font-family:'Be Vietnam Pro',sans-serif; font-size:0.88rem; font-weight:700; color:#111;">
+                            {{ $userAll->f_name }}</div>
+                        <div style="font-size:0.72rem; color:#9ca3af; font-family:'Be Vietnam Pro',sans-serif;">Member
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ url('userProfile') }}" class="drawer-link" style="padding:9px 10px; margin-bottom:2px;">
+                    <i class="fa-regular fa-user"></i> My Profile
+                </a>
+                <a href="{{ url('termsPolicy') }}" class="drawer-link" style="padding:9px 10px; margin-bottom:8px;">
+                    <i class="fa-regular fa-file-lines"></i> Terms & Policy
+                </a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="drawer-link"
+                        style="width:100%; text-align:left; background:none; border:none; cursor:pointer; color:#ef4444;">
+                        <i class="fa-solid fa-right-from-bracket" style="color:#ef4444;"></i> Sign Out
+                    </button>
+                </form>
+            </div>
+        @endauth
+    </div>
+
+    @guest
+        <div class="drawer-footer">
+            <a href="{{ url('login') }}" class="drawer-btn-login">Login</a>
+            <a href="{{ url('register') }}" class="drawer-btn-register">Create Account</a>
+        </div>
+    @endguest
 </div>
 
 <script>
-    function toggleMobileMenu() {
-        const mobileMenu = document.getElementById('mobile-menu');
-        const body = document.body;
+    // ── Scroll behaviour: transparent → frosted glass ──
+    const navbar = document.getElementById('navbar');
 
-        if (mobileMenu.classList.contains('hidden')) {
-            // Open mobile menu
-            body.style.overflow = 'hidden'; // Disable scroll on the body
-            mobileMenu.classList.remove('hidden');
-            mobileMenu.classList.add('animate-slide-down');
+    function updateNavbar() {
+        if (window.scrollY > 40) {
+            navbar.classList.remove('is-top');
+            navbar.classList.add('is-scrolled');
         } else {
-            // Close mobile menu
-            body.style.overflow = 'auto'; // Enable scroll on the body
-            mobileMenu.classList.add('animate-slide-up');
-            setTimeout(() => {
-                mobileMenu.classList.remove('animate-slide-up', 'animate-slide-down');
-                mobileMenu.classList.add('hidden');
-            }, 300); // Adjust the duration to match the animation duration
+            navbar.classList.remove('is-scrolled');
+            navbar.classList.add('is-top');
         }
     }
 
-    function toggleDropDown(event) {
-        const dropDownButton = event.currentTarget.parentNode;
-        const dropdown = dropDownButton.querySelector('#dropdown');
+    updateNavbar();
+    window.addEventListener('scroll', updateNavbar, {
+        passive: true
+    });
 
-        if (dropdown.classList.contains('hidden')) {
-            // Open dropdown
-            dropdown.classList.remove('hidden');
-            dropdown.classList.add('animate-fade-in');
-        } else {
-            // Close dropdown
-            dropdown.classList.add('animate-fade-out');
-            setTimeout(() => {
-                dropdown.classList.remove('animate-fade-in', 'animate-fade-out');
-                dropdown.classList.add('hidden');
-            }, 300); // Adjust the duration to match the animation duration
-        }
+    // ── Mobile Drawer ──
+    const drawer = document.getElementById('mobileDrawer');
+    const overlay = document.getElementById('drawerOverlay');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+
+    function toggleDrawer() {
+        const isOpen = drawer.classList.contains('open');
+        drawer.classList.toggle('open', !isOpen);
+        overlay.classList.toggle('open', !isOpen);
+        hamburgerBtn.classList.toggle('open', !isOpen);
+        document.body.style.overflow = isOpen ? '' : 'hidden';
     }
-    var prevScrollpos = window.pageYOffset;
-    window.onscroll = function() {
-        var currentScrollPos = window.pageYOffset;
-        if (prevScrollpos > currentScrollPos) {
-            document.getElementById("navbar").style.top = "0";
-            document.getElementById("navbar").classList.add("stt");
-        } else {
-            document.getElementById("navbar").style.top = "-73px";
-        }
-        prevScrollpos = currentScrollPos;
+
+    // ── User Dropdown ──
+    const userMenu = document.getElementById('userMenu');
+
+    function toggleUserMenu(event) {
+        event.stopPropagation();
+        if (userMenu) userMenu.classList.toggle('open');
     }
+
+    document.addEventListener('click', function(e) {
+        if (userMenu && !userMenu.contains(e.target)) {
+            userMenu.classList.remove('open');
+        }
+    });
+
+    // ── Active link highlight ──
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.nav-link, .drawer-link').forEach(link => {
+        if (link.getAttribute('href') && currentPath.startsWith(link.getAttribute('href')) && link.getAttribute(
+                'href') !== '#') {
+            link.classList.add('active');
+        }
+    });
 </script>

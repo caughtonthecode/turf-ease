@@ -1,49 +1,54 @@
-@include('home.header')
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+<x-main-layout>
+<div class="auth-page">
+    <div class="auth-overlay"></div>
+    
+    <div class="auth-card">
+        <div class="auth-header">
+            <h2 class="auth-title">Welcome Back</h2>
+            <p class="auth-subtitle">Sign in to book your favorite turfs</p>
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+        <x-auth-session-status class="mb-4" :status="session('status')" style="color: #06B24E; font-size: 0.9rem; text-align: center; margin-bottom: 20px;" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <!-- Email Address -->
+            <div class="auth-group">
+                <label for="email" class="auth-label">Email Address</label>
+                <input id="email" class="auth-input" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username" placeholder="Enter your email">
+                <x-input-error :messages="$errors->get('email')" class="auth-error" />
+            </div>
+
+            <!-- Password -->
+            <div class="auth-group">
+                <label for="password" class="auth-label">Password</label>
+                <input id="password" class="auth-input" type="password" name="password" required autocomplete="current-password" placeholder="Enter your password">
+                <x-input-error :messages="$errors->get('password')" class="auth-error" />
+            </div>
+
+            <!-- Remember Me & Forgot Password -->
+            <div class="auth-check-group">
+                <label for="remember_me" class="checkbox-wrap">
+                    <input id="remember_me" type="checkbox" name="remember">
+                    <span>Remember me</span>
+                </label>
+
+                @if (Route::has('password.request'))
+                    <a class="auth-forgot" href="{{ route('password.request') }}">
+                        Forgot password?
+                    </a>
+                @endif
+            </div>
+
+            <button type="submit" class="btn-auth">
+                Log In
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            Don't have an account? <a href="{{ route('register') }}">Create one</a>
         </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
-@include('home.footer')
+    </div>
+</div>
+</x-main-layout>

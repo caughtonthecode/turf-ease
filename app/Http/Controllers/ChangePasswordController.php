@@ -16,7 +16,7 @@ class ChangePasswordController extends Controller
             $user = User::all();
             $userAll = Auth::user();
         }
-        return view('user.partials.changePassword',compact('userAll'));
+        return view('pages.user.partials.changePassword',compact('userAll'));
     }
 
     public function changePassword(Request $request)

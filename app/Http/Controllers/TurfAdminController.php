@@ -14,7 +14,7 @@ class TurfAdminController extends Controller
     {
         $turfs = TurfAdminModel::all();
 
-        return view('turfAdmin.partials.addTurf', compact('turfs'));
+        return view('pages.turfAdmin.partials.addTurf', compact('turfs'));
     }
 
     public function dashboardView()
@@ -26,7 +26,7 @@ class TurfAdminController extends Controller
             $userAll = Auth::user();
         }
 
-        return view('turfAdmin.partials.dashboard', compact('turfs', 'userAll', 'bookings'));
+        return view('pages.turfAdmin.partials.dashboard', compact('turfs', 'userAll', 'bookings'));
     }
 
     public function myProfile()
@@ -38,7 +38,7 @@ class TurfAdminController extends Controller
             $userAll = Auth::user();
         }
 
-        return view('turfAdmin.partials.profile', compact('user', 'bookings', 'userAll'));
+        return view('pages.turfAdmin.partials.profile', compact('user', 'bookings', 'userAll'));
     }
 
     public function booking()
@@ -51,7 +51,7 @@ class TurfAdminController extends Controller
             // $turfs = TurfAdminModel::where('user_id', Auth::user()->id)->get();
         }
 
-        return view('turfAdmin.partials.booking', compact('user', 'penTurfs', 'userAll', 'bookedUser'));
+        return view('pages.turfAdmin.partials.booking', compact('user', 'penTurfs', 'userAll', 'bookedUser'));
     }
 
     public function viewTurf()
@@ -62,7 +62,7 @@ class TurfAdminController extends Controller
             $userAll = Auth::user();
             $turfs = TurfAdminModel::where('user_id', Auth::user()->id)->get();
 
-            return view('turfAdmin.partials.myTurf', compact('turfs', 'user', 'bookings', 'userAll'));
+            return view('pages.turfAdmin.partials.myTurf', compact('turfs', 'user', 'bookings', 'userAll'));
         }
     }
 
@@ -75,7 +75,7 @@ class TurfAdminController extends Controller
             $userAll = Auth::user();
         }
 
-        return view('turfAdmin.partials.wallet', compact('user', 'bookings', 'userAll'));
+        return view('pages.turfAdmin.partials.wallet', compact('user', 'bookings', 'userAll'));
     }
 
     public function ok()
@@ -83,7 +83,7 @@ class TurfAdminController extends Controller
         $turfs = TurfAdminModel::all();
         $bookings = BookingModel::all();
 
-        return view('turfAdmin.ok');
+        return view('pages.turfAdmin.ok');
     }
 
     public function addTurf(Request $request)

@@ -23,7 +23,7 @@ class AdminController extends Controller
             $userAll = Auth::user();
         }
 
-        return view('admin.partials.dashboard', compact('turfs', 'bookings', 'user', 'userAll', 'usersAdmin'));
+        return view('pages.admin.partials.dashboard', compact('turfs', 'bookings', 'user', 'userAll', 'usersAdmin'));
     }
 
     public function managerRequest(Request $request)
@@ -66,7 +66,7 @@ class AdminController extends Controller
             $userAll = Auth::user();
         }
 
-        return view('admin.partials.users', compact('turfs', 'bookings', 'users', 'userAll'));
+        return view('pages.admin.partials.users', compact('turfs', 'bookings', 'users', 'userAll'));
     }
 
     public function earningView()
@@ -78,7 +78,7 @@ class AdminController extends Controller
             $userAll = Auth::user();
         }
 
-        return view('admin.partials.earnings', compact('turfs', 'bookings', 'user', 'userAll'));
+        return view('pages.admin.partials.earnings', compact('turfs', 'bookings', 'user', 'userAll'));
     }
 
     public function deleteUser($userId)

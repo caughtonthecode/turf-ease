@@ -22,7 +22,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('user.userRegistration');
+        return view('pages.user.userRegistration');
     }
 
     /**

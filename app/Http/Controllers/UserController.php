@@ -11,12 +11,12 @@ class UserController extends Controller
 {
     public function login()
     {
-        return view('user.userLogin');
+        return view('pages.user.userLogin');
     }
 
     public function register(Request $request)
     {
-        return view('user.userRegistration');
+        return view('pages.user.userRegistration');
     }
 
     /**
@@ -29,7 +29,7 @@ class UserController extends Controller
             $userAll = Auth::user();
         }
 
-        return view('user.partials.personalInfo', compact('userAll'));
+        return view('pages.user.partials.personalInfo', compact('userAll'));
     }
 
     // // Persoanl Information
@@ -40,7 +40,7 @@ class UserController extends Controller
     //     {
     //         $userAll = Auth::user();
     //     }
-    //     return view('user.partials.personalInfo', compact('userAll'));
+    //     return view('pages.user.partials.personalInfo', compact('userAll'));
     // }
 
     // Booking History
@@ -53,7 +53,7 @@ class UserController extends Controller
             $bookings = BookingModel::all();
         }
 
-        return view('user.partials.bookingHistory', compact('userAll', 'bookings'));
+        return view('pages.user.partials.bookingHistory', compact('userAll', 'bookings'));
     }
 
     // Tournament
@@ -64,7 +64,7 @@ class UserController extends Controller
             $userAll = Auth::user();
         }
 
-        return view('user.partials.tournament', compact('userAll'));
+        return view('pages.user.partials.tournament', compact('userAll'));
     }
 
     public function profileUpdateView()
@@ -74,7 +74,7 @@ class UserController extends Controller
             $userAll = Auth::user();
         }
 
-        return view('user.partials.update', compact('userAll'));
+        return view('pages.user.partials.update', compact('userAll'));
     }
 
     // Turf Manager Profile
@@ -82,7 +82,7 @@ class UserController extends Controller
     {
         $user = User::all();
 
-        return view('turfAdmin.partials.editProfile', compact('user'));
+        return view('pages.turfAdmin.partials.editProfile', compact('user'));
     }
 
     public function profileUpdate(Request $request)

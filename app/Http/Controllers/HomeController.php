@@ -22,7 +22,7 @@ class HomeController extends Controller
             $userAll = Auth::user();
 
             if ($userType == 'user') {
-                return view('home.homepage', compact('userAll', 'turfs'));
+                return view('pages.admin.home.homepage', compact('userAll', 'turfs'));
             } elseif ($userType == 'admin') {
                 return redirect('/admin');
             } elseif ($userType == 'tmanager') {
@@ -32,7 +32,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('home.homepage', compact('turfs'));
+        return view('pages.admin.home.homepage', compact('turfs'));
     }
 
     // Turf Category
@@ -69,10 +69,10 @@ class HomeController extends Controller
 
         if (Auth::id()) {
             $userAll = Auth::user();
-            return view('home.turfCategoryView', compact('userAll', 'turfs'));
+            return view('pages.admin.home.turfCategoryView', compact('userAll', 'turfs'));
         }
 
-        return view('home.turfCategoryView', compact('turfs'));
+        return view('pages.admin.home.turfCategoryView', compact('turfs'));
     }
 
     public function turfViewPage($id)
@@ -96,10 +96,10 @@ class HomeController extends Controller
 
             // $isBooked = BookingModel::find($turfUser);
 
-            return view('home.turfView', compact('userAll', 'turfs', 'userProPic'));
+            return view('pages.admin.home.turfView', compact('userAll', 'turfs', 'userProPic'));
         }
 
-        return view('home.turfView', compact('turfs', 'userProPic'));
+        return view('pages.admin.home.turfView', compact('turfs', 'userProPic'));
     }
 
     public function confirmBooking(Request $request, $id)
@@ -144,7 +144,7 @@ class HomeController extends Controller
             $bookings->save();
             $turfs->save();
 
-            return view('home.bookingConfirmation', compact('bookings', 'userAll'));
+            return view('pages.admin.home.bookingConfirmation', compact('bookings', 'userAll'));
         } else {
             echo 'Payment gatway will intrigate later';
         }
@@ -158,10 +158,10 @@ class HomeController extends Controller
             $requestStatus = AdminModel::findOrFail(Auth::user()->id);
             // echo 'nai';
 
-            return view('home.managerRequest', compact('userAll', 'requestStatus'));
+            return view('pages.admin.home.managerRequest', compact('userAll', 'requestStatus'));
         }
 
-        return view('home.managerRequest');
+        return view('pages.admin.home.managerRequest');
     }
 
     public function managerRequestStore(Request $request)
@@ -193,10 +193,10 @@ class HomeController extends Controller
         if (Auth::id()) {
             $userAll = Auth::user();
 
-            return view('home.category.football', compact('turfs', 'userAll'));
+            return view('pages.admin.home.category.football', compact('turfs', 'userAll'));
         }
 
-        return view('home.category.football', compact('turfs'));
+        return view('pages.admin.home.category.football', compact('turfs'));
     }
 
     public function cricket()
@@ -205,10 +205,10 @@ class HomeController extends Controller
         if (Auth::id()) {
             $userAll = Auth::user();
 
-            return view('home.category.cricket', compact('turfs', 'userAll'));
+            return view('pages.admin.home.category.cricket', compact('turfs', 'userAll'));
         }
 
-        return view('home.category.cricket', compact('turfs'));
+        return view('pages.admin.home.category.cricket', compact('turfs'));
     }
 
     public function badminton()
@@ -217,10 +217,10 @@ class HomeController extends Controller
         if (Auth::id()) {
             $userAll = Auth::user();
 
-            return view('home.category.badminton', compact('turfs', 'userAll'));
+            return view('pages.admin.home.category.badminton', compact('turfs', 'userAll'));
         }
 
-        return view('home.category.badminton', compact('turfs'));
+        return view('pages.admin.home.category.badminton', compact('turfs'));
     }
 
     public function basketball()
@@ -229,10 +229,10 @@ class HomeController extends Controller
         if (Auth::id()) {
             $userAll = Auth::user();
 
-            return view('home.category.basketball', compact('turfs', 'userAll'));
+            return view('pages.admin.home.category.basketball', compact('turfs', 'userAll'));
         }
 
-        return view('home.category.basketball', compact('turfs'));
+        return view('pages.admin.home.category.basketball', compact('turfs'));
     }
 
     public function paintball()
@@ -241,10 +241,10 @@ class HomeController extends Controller
         if (Auth::id()) {
             $userAll = Auth::user();
 
-            return view('home.category.paintball', compact('turfs', 'userAll'));
+            return view('pages.admin.home.category.paintball', compact('turfs', 'userAll'));
         }
 
-        return view('home.category.paintball', compact('turfs'));
+        return view('pages.admin.home.category.paintball', compact('turfs'));
     }
 
     public function swimming()
@@ -253,10 +253,10 @@ class HomeController extends Controller
         if (Auth::id()) {
             $userAll = Auth::user();
 
-            return view('home.category.swimming', compact('turfs', 'userAll'));
+            return view('pages.admin.home.category.swimming', compact('turfs', 'userAll'));
         }
 
-        return view('home.category.swimming', compact('turfs'));
+        return view('pages.admin.home.category.swimming', compact('turfs'));
     }
 
     public function eSports()
@@ -265,10 +265,10 @@ class HomeController extends Controller
         if (Auth::id()) {
             $userAll = Auth::user();
 
-            return view('home.category.eSports', compact('turfs', 'userAll'));
+            return view('pages.admin.home.category.eSports', compact('turfs', 'userAll'));
         }
 
-        return view('home.category.eSports', compact('turfs'));
+        return view('pages.admin.home.category.eSports', compact('turfs'));
     }
 
     public function pool()
@@ -277,9 +277,9 @@ class HomeController extends Controller
         if (Auth::id()) {
             $userAll = Auth::user();
 
-            return view('home.category.pool', compact('turfs', 'userAll'));
+            return view('pages.admin.home.category.pool', compact('turfs', 'userAll'));
         }
 
-        return view('home.category.pool', compact('turfs'));
+        return view('pages.admin.home.category.pool', compact('turfs'));
     }
 }

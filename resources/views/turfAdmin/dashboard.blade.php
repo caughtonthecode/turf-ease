@@ -3,6 +3,7 @@
 
 <head>
     @include('turfAdmin.css')
+    @stack('styles')
     <title>Turf Manager Panel - TurfEase</title>
 </head>
 

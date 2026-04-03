@@ -136,7 +136,7 @@
                             class="absolute inset-y-0 left-0 w-1/2 bg-[#00b737] shadow-lg transition-transform duration-300 transform -translate-x-full">
                             <div class="flex justify-between items-center text-white py-8 px-6">
                                 <a href="{{ route('/') }}" class="flex items-center">
-                                    <img src="img/favicon.png" class="w-20 h-20" alt=""> <span
+                                    <img src="{{ asset('assets/img/favicon.png') }}" class="w-20 h-20" alt=""> <span
                                         class="text-5xl uppercase font-Audiowide">Turfease</span>
                                 </a>
                                 <button id="sidebarCloseBtn" class="focus:outline-none">
@@ -258,7 +258,7 @@
             {{-- logo --}}
             <div class="hidden max-xl:flex max-xl:w-1/3 max-xl:justify-center">
                 <a href="{{ route('/') }}">
-                    <img src="img/logo.png" class="max-xl:w-[210px]" alt="">
+                    <img src="{{ asset('assets/img/logo.png') }}" class="max-xl:w-[210px]" alt="">
                 </a>
             </div>
 
@@ -272,7 +272,7 @@
                             <span class="max-xl:hidden">{{ $userAll->f_name }}</span> <span
                                 class="max-xl:hidden">{{ $userAll->l_name }}</span>
                         </div>
-                        <img src="img/{{ $userAll->pro_pic }}"
+                        <img src="{{ asset('assets/img/' . $userAll->pro_pic) }}"
                             class="w-10 h-10 max-xl:w-[80px] max-xl:h-[80px] rounded-full" alt="profileDropdownbtn">
                     </button>
                     <div id="profileDropdown"
@@ -314,7 +314,7 @@
                             <div class="flex flex-col items-center mb-4">
                                 <img class="h-16 w-16 lg:w-28 lg:h-28 max-xl:h-52 max-xl:w-52
                                  rounded-full mr-4 max-xl:mb-4 bg-red-50 p-3"
-                                    src="img/{{ $user->pro_pic }}" alt="Profile Picture">
+                                    src="{{ asset('assets/img/' . $user->pro_pic) }}" alt="Profile Picture">
                                 <div class="text-center space-y-2 lg:space-y-0">
                                     <h2 class="text-2xl text-gray-600 max-xl:text-5xl lg:text-base font-semibold lg:mt-2">
                                         {{ $user->f_name }} {{ $user->l_name }}</h2>
@@ -324,16 +324,16 @@
                                     class="max-xl:flex lg:flex max-xl:justify-center max-xl:items-center max-xl:mt-6 max-xl:space-x-6 lg:space-x-2 glassy-bg rounded-full px-6 py-3 lg:px-2 lg:py-1 lg:mt-2">
                                     {{-- facebook --}}
                                     <a href="{{ json_decode($user->social_links, true)['facebook'] ?? '#' }}"><img
-                                            src="icons/facebook-icon.svg" class="lg:w-8 lg:h-8" alt=""></a>
+                                            src="{{ asset('assets/icons/facebook-icon.svg') }}" class="lg:w-8 lg:h-8" alt=""></a>
                                     {{-- instagram --}}
                                     <a href="{{ json_decode($user->social_links, true)['instagram'] ?? '' }}"><img
-                                            src="icons/instagram-icon.svg" class="lg:w-8 lg:h-8" alt=""></a>
+                                            src="{{ asset('assets/icons/instagram-icon.svg') }}" class="lg:w-8 lg:h-8" alt=""></a>
                                     {{-- twitter --}}
                                     <a href="{{ json_decode($user->social_links, true)['twitter'] ?? '' }}"><img
-                                            src="icons/twitter-icon.svg" class="lg:w-8 lg:h-8" alt=""></a>
+                                            src="{{ asset('assets/icons/twitter-icon.svg') }}" class="lg:w-8 lg:h-8" alt=""></a>
                                     {{-- linkedin --}}
                                     <a href="{{ json_decode($user->social_links, true)['linkedin'] ?? '' }}"><img
-                                            src="icons/linkedin-icon.svg" class="lg:w-8 lg:h-8" alt=""></a>
+                                            src="{{ asset('assets/icons/linkedin-icon.svg') }}" class="lg:w-8 lg:h-8" alt=""></a>
                                 </div>
                             </div>
                             <div class="max-xl:mt-16">

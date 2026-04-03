@@ -9,6 +9,7 @@
     <meta property="og:title" content="{{ $title ?? 'TurfEase - Book Sports Playground Online' }}">
     <meta property="og:description" content="Bangladesh\'s #1 turf booking platform. Find & book sports turfs near you.">
     <meta property="og:type" content="website">
+    @stack('styles')
 </head>
 
 <body>
@@ -20,6 +21,7 @@
     </main>
 
     @include('home.footer')
+    @stack('scripts')
 </body>
 
 </html>

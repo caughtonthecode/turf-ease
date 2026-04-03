@@ -250,7 +250,7 @@
             {{-- logo --}}
             <div class="hidden max-xl:flex max-xl:w-1/3 max-xl:justify-center">
                 <a href="{{ route('/') }}">
-                    <img src="img/logo.png" class="max-xl:w-[210px]" alt="">
+                    <img src="{{ asset('assets/img/logo.png') }}" class="max-xl:w-[210px]" alt="">
                 </a>
             </div>
 
@@ -264,7 +264,7 @@
                             <span class="max-xl:hidden">{{ $userAll->f_name }}</span> <span
                                 class="max-xl:hidden">{{ $userAll->l_name }}</span>
                         </div>
-                        <img src="img/{{ $userAll->pro_pic }}"
+                        <img src="{{ asset('assets/img/' . $userAll->pro_pic) }}"
                             class="w-10 h-10 max-xl:w-[80px] max-xl:h-[80px] rounded-full" alt="profileDropdownbtn">
                     </button>
                     <div id="profileDropdown"
@@ -380,7 +380,7 @@
                             <p class="text-orange-600 max-xl:text-4xl">Outgoing</p>
                         </div>
                         <div class="rounded-full w-28 max-xl:w-72">
-                            <img src="icons/chart-icon.svg" alt="">
+                            <img src="{{ asset('assets/icons/chart-icon.svg') }}" alt="">
                         </div>
                     </div>
 

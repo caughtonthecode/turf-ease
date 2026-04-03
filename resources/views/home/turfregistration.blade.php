@@ -1,9 +1,10 @@
 {{-- ===== Own a Turf? CTA Section ===== --}}
+@push('styles')
 <style>
     .register-section {
         position: relative;
         padding: 100px 0;
-        background-image: url('../../../public/img/bg-2.jpg');
+        background-image: url('{{ asset('assets/img/bg-2.jpg') }}');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -109,6 +110,7 @@
         font-size: 0.7rem;
     }
 </style>
+@endpush
 
 <div class="register-section">
     <div class="register-overlay"></div>

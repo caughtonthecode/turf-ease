@@ -19,7 +19,7 @@
         <!-- User -->
         <div class="w-1/4">
             <div class="bg-white p-6 w-5/6 flex flex-col items-center rounded-xl">
-                <img src="img/{{ $proPic }}" class="w-24 h-24 rounded-full" alt="">
+                <img src="{{ asset('assets/img/' . $proPic) }}" class="w-24 h-24 rounded-full" alt="">
                 <p class="p-1 mt-2 text-gray-500 font-semibold">{{ $userFname }}</p>
             </div>
 

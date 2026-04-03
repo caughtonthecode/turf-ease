@@ -1,6 +1,6 @@
 <x-main-layout>
     <div class="relative min-h-[100vh] flex flex-col items-center justify-center pt-32 pb-16 px-4"
-        style="background: url('/img/login-bg.png') center/cover no-repeat fixed; font-family: 'Be Vietnam Pro', sans-serif;">
+        style="background: url('{{ asset('assets/img/login-bg.png') }}') center/cover no-repeat fixed; font-family: 'Be Vietnam Pro', sans-serif;">
         
         <!-- Dark Overlay -->
         <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-black/90 pointer-events-none"></div>

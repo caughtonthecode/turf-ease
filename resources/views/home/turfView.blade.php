@@ -18,7 +18,7 @@
     <div class="w-full lg:w-[60%] mx-auto px-4">
         <div class="bg-white rounded-lg overflow-hidden shadow-lg">
             <div class="relative">
-                <img src="../turfAdmin/images/{{ $turfs->f_image }}" alt="Turf Image"
+                <img src="{{ asset('assets/turfAdmin/images/' . $turfs->f_image) }}" alt="Turf Image"
                     class="w-full h-52 lg:h-80 object-cover">
                 {{-- <div class="absolute inset-0 bg-gradient-to-b from-transparent to-gray-700 opacity-75"></div> --}}
             </div>
@@ -118,7 +118,7 @@
                                         <div
                                             class="rounded-md bg-[#4ca714]/15 p-4 mt-4 flex justify-between items-center">
                                             <div class="flex items-center">
-                                                <img src="../img/logo.png" class="w-6 h-6 mr-2" alt="Payment Icon">
+                                                <img src="{{ asset('assets/img/logo.png') }}" class="w-6 h-6 mr-2" alt="Payment Icon">
                                                 <p class="text-gray-900 text-lg font-semibold">Payable Amount</p>
                                             </div>
                                             <p class="text-gray-800 text-lg font-semibold">Sub Total: <span
@@ -152,7 +152,7 @@
                 <!-- Other content -->
                 <div class="bg-white rounded-lg flex justify-between items-center">
                     <div class="flex items-center">
-                        <img src="../img/{{ $userProPic }}" alt="Owner Image"
+                        <img src="{{ asset('assets/img/' . $userProPic) }}" alt="Owner Image"
                             class="w-14 h-14 lg:w-32 lg:h-32 rounded-full mr-6">
                         <div>
                             <h3 class="text-lg font-bold mb-0 lg:mb-2 text-gray-900">{{ $turfs->turf_name }}</h3>

@@ -1,3 +1,4 @@
+@push('styles')
 <style>
     .section-label {
         font-size: 0.75rem;
@@ -161,6 +162,7 @@
         border-color: #06B24E;
     }
 </style>
+@endpush
 
 {{-- ===== Explore Popular Turf Section ===== --}}
 <div class="py-16 lg:py-20" style="background: #f2f7f4;">
@@ -181,7 +183,7 @@
                 @foreach ($turfs->take(10) as $turf)
                     <div class="turf-card">
                         <div class="turf-card-img-wrap">
-                            <img src="/turfAdmin/images/{{ $turf->f_image }}" onerror="this.src='/img/bg-2.jpg';" alt="{{ $turf->turf_name }}">
+                            <img src="{{ asset('assets/turfAdmin/images/' . $turf->f_image) }}" onerror="this.src='{{ asset('assets/img/bg-2.jpg') }}';" alt="{{ $turf->turf_name }}">
                             <div class="turf-card-badge">Available</div>
                         </div>
                         <div class="turf-card-body">

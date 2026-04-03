@@ -3,7 +3,7 @@
         <!-- User -->
         <div class="w-1/4">
             <div class="bg-white p-6 w-5/6 flex flex-col items-center rounded-xl">
-                <img src="img/profile-user.png" class="w-20 h-20" alt="">
+                <img src="{{ asset('assets/img/profile-user.png') }}" class="w-20 h-20" alt="">
                 <p class="p-1 text-gray-500 font-semibold">{{ $userFname }} {{ $userLname }}</p>
             </div>
 

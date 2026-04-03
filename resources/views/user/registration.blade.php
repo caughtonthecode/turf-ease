@@ -2,7 +2,7 @@
         <div class="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1000px">
             <div class="md:flex w-full">
                 <div class="hidden mx-auto md:block w-1/2 bg-slate-200 py-10 px-10">
-                    <img src="img/login-bg.png" class="p-10">
+                    <img src="{{ asset('assets/img/login-bg.png') }}" class="p-10">
                     <h2 class="text-center text-[#333333] font-Audiowide text-3xl font-bold">Elevate Your Game to a
                         New
                         Dimension</h2>

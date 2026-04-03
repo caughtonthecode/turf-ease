@@ -1,9 +1,10 @@
+@push('styles')
 <style>
     .hero-section {
         position: relative;
         height: 100vh;
         min-height: 600px;
-        background-image: url('/img/search-bg2.jpg');
+        background-image: url('{{ asset('assets/img/search-bg2.jpg') }}');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -281,6 +282,7 @@
         100% { transform: translateY(8px); opacity: 0; }
     }
 </style>
+@endpush
 
 <div class="hero-section">
     <div class="hero-overlay"></div>

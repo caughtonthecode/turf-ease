@@ -1,4 +1,5 @@
 {{-- ===== Browse by Category Section ===== --}}
+@push('styles')
 <style>
     .category-card {
         display: flex;
@@ -87,6 +88,7 @@
         transform: translate(2px, -2px);
     }
 </style>
+@endpush
 
 <div style="background: #f2f7f4;" class="py-16 lg:py-20">
     <div class="custom-container mx-auto px-4 lg:px-0">
@@ -105,7 +107,7 @@
 
             <a href="{{ url('category/football') }}" class="category-card">
                 <div class="category-icon-wrap">
-                    <img src="/img/football_icon.png" alt="Football">
+                    <img src="{{ asset('assets/img/football_icon.png') }}" alt="Football">
                 </div>
                 <p class="category-name">Football</p>
                 <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
@@ -113,7 +115,7 @@
 
             <a href="{{ url('category/swimming') }}" class="category-card">
                 <div class="category-icon-wrap">
-                    <img src="/img/swiming_icon.png" alt="Swimming">
+                    <img src="{{ asset('assets/img/swiming_icon.png') }}" alt="Swimming">
                 </div>
                 <p class="category-name">Swimming</p>
                 <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
@@ -121,7 +123,7 @@
 
             <a href="{{ url('category/cricket') }}" class="category-card">
                 <div class="category-icon-wrap">
-                    <img src="/img/cricket_icon.png" alt="Cricket">
+                    <img src="{{ asset('assets/img/cricket_icon.png') }}" alt="Cricket">
                 </div>
                 <p class="category-name">Cricket</p>
                 <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
@@ -129,7 +131,7 @@
 
             <a href="{{ url('category/pool') }}" class="category-card">
                 <div class="category-icon-wrap">
-                    <img src="/img/pool_icon.png" alt="Pool">
+                    <img src="{{ asset('assets/img/pool_icon.png') }}" alt="Pool">
                 </div>
                 <p class="category-name">Pool</p>
                 <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
@@ -137,7 +139,7 @@
 
             <a href="{{ url('category/badminton') }}" class="category-card">
                 <div class="category-icon-wrap">
-                    <img src="/img/badminton_icon.png" alt="Badminton">
+                    <img src="{{ asset('assets/img/badminton_icon.png') }}" alt="Badminton">
                 </div>
                 <p class="category-name">Badminton</p>
                 <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
@@ -145,7 +147,7 @@
 
             <a href="{{ url('category/paintball') }}" class="category-card">
                 <div class="category-icon-wrap">
-                    <img src="/img/paintball_icon.png" alt="Paintball">
+                    <img src="{{ asset('assets/img/paintball_icon.png') }}" alt="Paintball">
                 </div>
                 <p class="category-name">Paintball</p>
                 <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
@@ -153,7 +155,7 @@
 
             <a href="{{ url('category/basketball') }}" class="category-card">
                 <div class="category-icon-wrap">
-                    <img src="/img/basketball_icon.png" alt="Basketball">
+                    <img src="{{ asset('assets/img/basketball_icon.png') }}" alt="Basketball">
                 </div>
                 <p class="category-name">Basketball</p>
                 <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
@@ -161,7 +163,7 @@
 
             <a href="{{ url('category/e-sports') }}" class="category-card">
                 <div class="category-icon-wrap">
-                    <img src="/img/esports_icon.png" alt="E-Sports">
+                    <img src="{{ asset('assets/img/esports_icon.png') }}" alt="E-Sports">
                 </div>
                 <p class="category-name">E-Sports</p>
                 <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>

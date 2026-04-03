@@ -1,4 +1,5 @@
 {{-- ===== How It Works Section (replaces slider) ===== --}}
+@push('styles')
 <style>
     .how-it-works {
         background: #f8fdf9;
@@ -98,6 +99,8 @@
         }
     }
 </style>
+@endpush
+
 
 <div class="how-it-works">
     <div class="custom-container mx-auto px-4">

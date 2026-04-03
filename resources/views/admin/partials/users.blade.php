@@ -1,17 +1,17 @@
 @extends('turfAdmin.dashboard')
 @include('admin.css')
 
-<body>
-    <style>
-        #overlay.visible {
-            opacity: 1;
-        }
+@push('styles')
+<style>
+    #overlay.visible {
+        opacity: 1;
+    }
 
-        #popup.visible {
-            opacity: 1;
-        }
-    </style>
-</body>
+    #popup.visible {
+        opacity: 1;
+    }
+</style>
+@endpush
 @section('sidebar-content')
     {{-- Sidebar Big Screen --}}
     <div class="collapsed">
@@ -109,7 +109,7 @@
                             class="absolute inset-y-0 left-0 w-1/2 bg-[#00b737] shadow-lg transition-transform duration-300 transform -translate-x-full">
                             <div class="flex justify-between items-center text-white py-8 px-6">
                                 <a href="{{ route('/') }}" class="flex items-center">
-                                    <img src="img/favicon.png" class="w-20 h-20" alt=""> <span
+                                    <img src="{{ asset('assets/img/favicon.png') }}" class="w-20 h-20" alt=""> <span
                                         class="text-5xl uppercase font-Audiowide">Turfease</span>
                                 </a>
                                 <button id="sidebarCloseBtn" class="focus:outline-none">
@@ -198,7 +198,7 @@
             {{-- logo --}}
             <div class="hidden max-xl:flex max-xl:w-1/3 max-xl:justify-center">
                 <a href="{{ route('/') }}">
-                    <img src="img/logo.png" class="max-xl:w-[210px]" alt="">
+                    <img src="{{ asset('assets/img/logo.png') }}" class="max-xl:w-[210px]" alt="">
                 </a>
             </div>
 
@@ -212,7 +212,7 @@
                             <span class="max-xl:hidden">{{ $userAll->f_name }}</span> <span
                                 class="max-xl:hidden">{{ $userAll->l_name }}</span>
                         </div>
-                        <img src="img/{{ $userAll->pro_pic }}"
+                        <img src="{{ asset('assets/img/' . $userAll->pro_pic) }}"
                             class="w-10 h-10 max-xl:w-[80px] max-xl:h-[80px] rounded-full" alt="profileDropdownbtn">
                     </button>
                     <div id="profileDropdown"

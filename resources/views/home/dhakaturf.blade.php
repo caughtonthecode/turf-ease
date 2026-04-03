@@ -17,7 +17,7 @@
                 @foreach ($turfs->where('district', 'Dhaka')->take(10) as $turf)
                     <div class="turf-card">
                         <div class="turf-card-img-wrap">
-                            <img src="/turfAdmin/images/{{ $turf->f_image }}" onerror="this.src='/img/bg-2.jpg';" alt="{{ $turf->turf_name }}">
+                            <img src="{{ asset('assets/turfAdmin/images/' . $turf->f_image) }}" onerror="this.src='{{ asset('assets/img/bg-2.jpg') }}';" alt="{{ $turf->turf_name }}">
                             <div class="turf-card-badge">Dhaka</div>
                         </div>
                         <div class="turf-card-body">

@@ -1,4 +1,5 @@
 {{-- ===== Tournament / CTA Banner Section ===== --}}
+@push('styles')
 <style>
     .tournament-section {
         background: #0a0f0a;
@@ -168,6 +169,8 @@
         font-family: 'Be Vietnam Pro', sans-serif;
     }
 </style>
+@endpush
+
 
 <div class="tournament-section">
     <div class="custom-container mx-auto px-4 lg:px-0">

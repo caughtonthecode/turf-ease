@@ -11,24 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('turf_admin_models', function (Blueprint $table) {
+        Schema::create('turfs', function (Blueprint $table) {
             $table->id();
-            $table->string('turf_name');
-            $table->longText('description')->nullable();
-            $table->string('category');
+            $table->string('name');
+            $table->longText('turf_details')->nullable();
+            $table->integer('category_id')->constrained('categories')->cascadeOnDelete();
             $table->string('division');
             $table->string('district');
             $table->string('address');
-            $table->string('shift');
-            $table->time('open_time');
-            $table->time('close_time');
-            $table->boolean('is_booked')->default(false);
-            $table->integer('price');
-            $table->string('facilities')->nullable();
-            $table->string('f_image')->nullable();
-            $table->string('image_gallery')->nullable();
-            $table->integer('user_id')->nullable();
-            $table->string('user_type')->nullable();
+            $table->decimal('rating', 3, 2)->nullable();
+            $table->integer('total_rating')->default(0);
+            $table->integer('total_review')->default(0);
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
+            $table->boolean('status')->default(1)->comment('active, inactive');
             $table->timestamps();
         });
     }

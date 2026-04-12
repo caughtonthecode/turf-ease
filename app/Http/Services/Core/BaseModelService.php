@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services;
+namespace App\Http\Services\Core;
 
 abstract class BaseModelService
 {
     abstract public function model();
 
-    public function getAll()
+    public function all()
     {
         return $this->model()->all();
     }
@@ -30,5 +30,4 @@ abstract class BaseModelService
     {
         return $this->model()->find($id)->delete();
     }
-    
 }

@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -12,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bookings', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->integer('turf_id')->constrained('turfs')->cascadeOnDelete();
             $table->integer('user_id')->constrained('users')->cascadeOnDelete();
-            $table->integer('payment_id')->constrained('payments')->cascadeOnDelete();
-            $table->integer('transaction_id')->constrained('transactions')->cascadeOnDelete();
-            $table->string('booked_slot')->constrained('avilable_slots')->cascadeOnDelete();
-            $table->integer('turf_manager_id')->constrained('users')->cascadeOnDelete();
+            $table->decimal('rating', 3, 2)->unsigned()->nullable();
+            $table->text('message')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('booking_models');
+        Schema::dropIfExists('reviews');
     }
 };

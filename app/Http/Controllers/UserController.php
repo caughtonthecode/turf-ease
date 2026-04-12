@@ -11,12 +11,12 @@ class UserController extends Controller
 {
     public function login()
     {
-        return view('pages.user.userLogin');
+        return view('pages.user.login');
     }
 
     public function register(Request $request)
     {
-        return view('pages.user.userRegistration');
+        return view('pages.user.registration');
     }
 
     /**

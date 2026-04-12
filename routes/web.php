@@ -2,47 +2,44 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ChangePasswordController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FrontendController\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SslCommerzPaymentController;
-use App\Http\Controllers\TurfAdminController;
+use App\Http\Controllers\TurfController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
+|------------------------------------------------
+| FRONTEND ROUTES
+|------------------------------------------------
 */
 
-// ==========================================
-// PUBLIC ROUTES
-// ==========================================
 Route::controller(HomeController::class)->group(function () {
-    Route::get('/', 'index')->name('/');
+    Route::get('/', 'index')->name('home.index');
 
-    // Turf Exploration
-    Route::get('/turf-list', 'turfList');
-    Route::get('/turf/{id}', 'turfViewPage');
+    Route::get('manager-request', 'managerRequestView')->name('manager.request.apply');
+    Route::post('manager-request', 'managerRequestStore')->name('manager.request.store');
+
+    Route::get('categories', 'categories')->name('categories');
+});
+
+Route::controller(TurfController::class)->group(function () {
+    Route::get('/available-turfs', 'index')->name('turf.available');
+
+    // Turf CRUD
+    Route::get('/turf/create', 'create')->name('turf.create');
+    Route::post('/turf/create', 'store')->name('turf.store');
+    Route::get('/turf/{id}/edit', 'edit')->name('turf.edit');
+    Route::put('/turf/{id}/edit', 'update')->name('turf.update');
+    Route::delete('/turf/{id}/delete', 'destroy')->name('turf.destroy');
+    Route::get('/turf/{id}', 'show')->name('turf.show');
 
     // Booking
-    Route::post('/turf/{id}/confirm-booking', 'confirmBooking')->name('confirmBooking');
+    Route::post('/turf/{id}/booking', 'store')->name('booking.store');
+    Route::get('/turf/{id}/booking/success', 'success')->name('booking.success');
+    Route::get('/turf/{id}/booking/error', 'bookingError')->name('booking.error');
 
-    // Manager Requests
-    Route::get('manager-request', 'managerRequestView');
-    Route::post('manager-request', 'managerRequestStore')->name('managerRequest');
-
-    // Categories
-    Route::prefix('category')->group(function () {
-        Route::get('football', 'football');
-        Route::get('cricket', 'cricket');
-        Route::get('badminton', 'badminton');
-        Route::get('basketball', 'basketball');
-        Route::get('swimming', 'swimming');
-        Route::get('pool', 'pool');
-        Route::get('paintball', 'paintball');
-        Route::get('e-sports', 'eSports');
-    });
 });
 
 // ==========================================
@@ -76,7 +73,7 @@ Route::middleware('auth')->group(function () {
 // TURF MANAGER PANEL
 // ==========================================
 Route::middleware(['auth', 'tmanager'])->group(function () {
-    Route::controller(TurfAdminController::class)->group(function () {
+    Route::controller(TurfController::class)->group(function () {
         Route::get('dashboard', 'dashboardView');
         Route::get('myProfile', 'myProfile');
         Route::get('bookings', 'booking');
@@ -125,7 +122,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 // ==========================================
 // AUTHENTICATION ROUTES (Breeze)
 // ==========================================
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
 
 // ==========================================
 // SSLCOMMERZ INTEGRATION

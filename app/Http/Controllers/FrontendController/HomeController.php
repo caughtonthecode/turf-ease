@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\FrontendController;
 
+use App\Http\Controllers\Controller;
+use App\Http\Services\TurfModelService;
 use App\Models\AdminModel;
 use App\Models\BookingModel;
 use App\Models\TurfAdminModel;
@@ -11,18 +13,30 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    // Home Page TurfEase
+    protected TurfModelService $turfModelService;
+
+    public function __construct(TurfModelService $turfModelService)
+    {
+        $this->turfModelService = $turfModelService;
+    }
+
+    // Index Page
     public function index()
     {
-        $turfs = TurfAdminModel::where('is_booked', false)->get();
+        $turfs = $this->turfModelService->getTurfs();
         $user = User::all();
+
+        $responseData = [
+            'turfs' => $turfs,
+            'user' => $user,
+        ];
 
         if (Auth::id()) {
             $userType = Auth::user()->usertype;
             $userAll = Auth::user();
 
             if ($userType == 'user') {
-                return view('pages.admin.home.homepage', compact('userAll', 'turfs'));
+                return view('pages.frontend.homepage.index', compact('userAll', 'turfs'));
             } elseif ($userType == 'admin') {
                 return redirect('/admin');
             } elseif ($userType == 'tmanager') {
@@ -32,11 +46,11 @@ class HomeController extends Controller
             }
         }
 
-        return view('pages.admin.home.homepage', compact('turfs'));
+        return view('pages.frontend.homepage.index', $responseData);
     }
 
     // Turf Category
-    public function turfList(Request $request)
+    public function availableTurfs(Request $request)
     {
         $searchQuery = $request->query('q');
         $sport = $request->query('sport');
@@ -69,13 +83,14 @@ class HomeController extends Controller
 
         if (Auth::id()) {
             $userAll = Auth::user();
-            return view('pages.admin.home.turfCategoryView', compact('userAll', 'turfs'));
+
+            return view('pages.frontend.turf-list.index', compact('userAll', 'turfs'));
         }
 
-        return view('pages.admin.home.turfCategoryView', compact('turfs'));
+        return view('pages.frontend.turf-list.index', compact('turfs'));
     }
 
-    public function turfViewPage($id)
+    public function showTurfs($id)
     {
         $turfs = TurfAdminModel::find($id);
         $turfUserId = $turfs->user_id;
@@ -86,7 +101,7 @@ class HomeController extends Controller
         } else {
         }
 
-        if (!$turfs) {
+        if (! $turfs) {
             abort(404);
         }
 
@@ -96,10 +111,10 @@ class HomeController extends Controller
 
             // $isBooked = BookingModel::find($turfUser);
 
-            return view('pages.admin.home.turfView', compact('userAll', 'turfs', 'userProPic'));
+            return view('pages.frontend.turf-details.index', compact('userAll', 'turfs', 'userProPic'));
         }
 
-        return view('pages.admin.home.turfView', compact('turfs', 'userProPic'));
+        return view('pages.frontend.turf-details.index', compact('turfs', 'userProPic'));
     }
 
     public function confirmBooking(Request $request, $id)
@@ -117,7 +132,7 @@ class HomeController extends Controller
             $turfName = $turfs->turf_name;
             $turfPrice = $turfs->price;
             $turfShift = $turfs->shift;
-            $turfSlot = $turfs->open_time . ' - ' . $turfs->close_time;
+            $turfSlot = $turfs->open_time.' - '.$turfs->close_time;
             $turfManagerId = $turfs->user_id;
 
             if (Auth::id()) {
@@ -144,7 +159,7 @@ class HomeController extends Controller
             $bookings->save();
             $turfs->save();
 
-            return view('pages.admin.home.bookingConfirmation', compact('bookings', 'userAll'));
+            return view('pages.frontend.booking.index', compact('bookings', 'userAll'));
         } else {
             echo 'Payment gatway will intrigate later';
         }
@@ -158,10 +173,10 @@ class HomeController extends Controller
             $requestStatus = AdminModel::findOrFail(Auth::user()->id);
             // echo 'nai';
 
-            return view('pages.admin.home.managerRequest', compact('userAll', 'requestStatus'));
+            return view('pages.frontend.turf-manager-request.index', compact('userAll', 'requestStatus'));
         }
 
-        return view('pages.admin.home.managerRequest');
+        return view('pages.frontend.turf-manager-request.index');
     }
 
     public function managerRequestStore(Request $request)
@@ -281,5 +296,18 @@ class HomeController extends Controller
         }
 
         return view('pages.admin.home.category.pool', compact('turfs'));
+    }
+
+    // Show Category
+    public function showCategory(Request $request)
+    {
+        $turfs = TurfAdminModel::where('category', 'LIKE', $request->category)->get();
+        if (Auth::id()) {
+            $userAll = Auth::user();
+
+            return view('pages.admin.home.category.category', compact('turfs', 'userAll'));
+        }
+
+        return view('pages.admin.home.category.category', compact('turfs'));
     }
 }
